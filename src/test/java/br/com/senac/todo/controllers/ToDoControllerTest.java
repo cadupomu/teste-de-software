@@ -1,7 +1,7 @@
 package br.com.senac.todo.controllers;
 
 import br.com.senac.todo.model.ToDo;
-import br.com.senac.todo.services.ToDoService;
+import br.com.senac.todo.services.ToDoServices;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,8 +17,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest
@@ -28,8 +28,7 @@ public class ToDoControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    private ToDoService toDoService;
-
+    private ToDoServices toDoService;
 
     @Test
     void getAllToDos() throws Exception {
