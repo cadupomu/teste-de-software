@@ -12,9 +12,10 @@ public class ToDo {
     @GeneratedValue
     private long id;
     private String description;
-    @Column(columnDefinition = "false")
+    @Column(columnDefinition = "boolean default false")
     private boolean completed;
 
+    // construtores
     public ToDo() {
 
     }
@@ -30,6 +31,7 @@ public class ToDo {
         this.completed = completed;
     }
 
+    // encapsulamento
     public long getId() {
         return id;
     }

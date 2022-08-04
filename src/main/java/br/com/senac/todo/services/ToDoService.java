@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ToDoServices {
+public class ToDoService {
 
     private final ToDoRepository toDoRepository;
 
-    public ToDoServices(ToDoRepository toDoRepository) {
+    public ToDoService(ToDoRepository toDoRepository) {
         this.toDoRepository = toDoRepository;
     }
 
@@ -19,8 +19,20 @@ public class ToDoServices {
         return toDoRepository.findAll();
     }
 
+    public ToDo findById(long toDoId) {
+        return toDoRepository.findById(toDoId).orElse(new ToDo());
+    }
+
     public ToDo save(ToDo toDo) {
         return toDoRepository.save(toDo);
+    }
+
+    public List<ToDo> saveAll(List<ToDo> toDoList) {
+        return toDoRepository.saveAll(toDoList);
+    }
+
+    public void deleteById(long toDoId) {
+        toDoRepository.deleteById(toDoId);
     }
 }
 
