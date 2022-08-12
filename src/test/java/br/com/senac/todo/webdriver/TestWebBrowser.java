@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 import java.time.Duration;
@@ -26,11 +27,12 @@ public class TestWebBrowser {
     public void openBrowser() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
     }
 
     @AfterEach
     void closeBrowser() {
-        //driver.quit();
+        driver.quit();
     }
 
     @Test
@@ -70,5 +72,22 @@ public class TestWebBrowser {
 
         assertTrue(searchResults.isDisplayed());
         assertThat(driver.getTitle().startsWith("Turma 2022.3"));
+    }
+
+    @Test
+    void searchVideo() {
+
+        driver.get("https://www.youtube.com/");
+        driver.manage().window().maximize();
+
+        searchBox = driver.findElement(By.id("search"));
+        searchBox.click();
+        searchBox.sendKeys("scientist twice");
+        searchBox.submit();
+
+        searchResults = driver.findElement(By.className("gsfi ytd-searchbox"));
+
+        assertTrue(searchResults.isDisplayed());
+        assertThat(driver.getTitle().startsWith("TWICE 'SCIENTIST' M/V"));
     }
 }
